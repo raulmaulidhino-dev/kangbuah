@@ -13,7 +13,6 @@
 		{ name: 'Kontak', href: '/kontak' }
 	];
 
-	// Reactive statement to update current path when page changes
 	$: currentPath = $page.url.pathname;
 
 	function isActiveLink(href) {
@@ -27,20 +26,27 @@
 
 <header id="top" class="relative z-10 border-b border-slate-300 bg-white">
 	<div class="flex w-full items-center justify-between p-4">
-		<a class="font-brand text-2xl font-light" href="/">
+		<a
+			class="font-brand text-2xl font-light"
+			href="/"
+			data-aos="flip-left"
+			data-aos-duration="1000"
+		>
 			<span class="text-primary">KANG</span>
 			<span class="text-secondary">BUAH</span>
 		</a>
 		<button
 			class={`rounded-lg p-2 text-black transition-all duration-300 focus:outline-none sm:hidden ${showMenu ? 'bg-slate-200' : ''}`}
 			on:click={() => (showMenu = !showMenu)}
+			data-aos="zoom-in"
+			data-aos-duration="800"
 		>
 			<Menu size="24" />
 		</button>
-		<nav class="hidden sm:block">
+		<nav class="hidden sm:block" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
 			<ul class="flex gap-4 text-black">
-				{#each navLinks as link}
-					<li>
+				{#each navLinks as link, i}
+					<li data-aos="fade-down" data-aos-delay={200 + i * 150} data-aos-duration="800">
 						<button
 							on:click={() => handleNavigation(link.href)}
 							class={`font-medium transition-all duration-200 hover:text-primary hover:underline hover:decoration-secondary hover:decoration-2 hover:underline-offset-4 ${
